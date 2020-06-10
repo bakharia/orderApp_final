@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "orderApp"
+    }
+  },
+  "defaultProject": "orderApp",
+  "cli": {
+    "analytics": false
+  }
 }

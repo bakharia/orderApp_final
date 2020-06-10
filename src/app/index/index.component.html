@@ -1,0 +1,182 @@
+<nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="#">
+        <h1><strong>Pizzeria</strong></h1>
+      </a>
+  
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item">
+          Home
+        </a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            More
+          </a>
+  
+          <div class="navbar-dropdown">
+            <a class="navbar-item">
+              About
+            </a>
+            <a class="navbar-item">
+              Jobs
+            </a>
+            <a class="navbar-item">
+              Contact
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <a class="button is-light">
+              <strong>Sign up</strong>
+            </a>
+            <a class="button is-light">
+              Log in
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+ <section *ngIf="order == false"> 
+<section class="hero is-light" >
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          Menu
+        </h1>
+      </div>
+    </div>
+  </section>
+  <div class="columns is-gapless">
+    <div class="column col">
+      <h1><Strong>Pizza</Strong></h1>
+    </div>
+    <div class="column is-one-third">
+      <h1><Strong>Ingredients</Strong></h1>
+    </div>
+    <div class="column">
+      <h1><Strong>Price(USD)</Strong></h1>
+    </div>
+    <div class="column is-1">
+  
+    </div>
+    <div class="column">
+      <h1><Strong>Quantity</Strong></h1>
+    </div>
+    <div class="column">
+      <h1><Strong>Amount(USD)</Strong></h1>
+    </div>
+  </div>
+  <div class="columns is-gapless" *ngFor="let item of pizzas">
+    <div class="column col">
+      <h1><Strong>{{item.name}}</Strong></h1>
+    </div>
+    <div class="column is-one-third">
+      <h1>{{item.ingredients}}</h1>
+    </div>
+    <div class="column">
+      <h1><Strong>{{item.price}}</Strong></h1>
+    </div>
+    <div class="column is-1">
+  
+    </div>
+    <div class="column">
+      <div class="field">
+        <div class="control">
+          <div class="select is-info">
+            <select (change)="totalprice($event,item.name,item.price)">
+              <option>Select dropdown</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <h1><strong>{{tprice[findIndex(item.name)]}}</strong></h1>
+    </div>
+  </div>
+  <footer>
+    <nav class="navbar is-light">
+      <div class="navbar-end">
+          <h3>The total price is: <strong>{{fprice}}</strong></h3>
+        <button class="button is-success" (click) = "placeorder()">Continue</button>
+      </div>
+    </nav>
+  </footer>
+ </section>
+  
+<section *ngIf="order == true">
+<section class="hero is-light" >
+    <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            Final Order
+          </h1>
+        </div>
+      </div>
+    </section>
+    <div class="columns is-gapless">
+        <div class="column col">
+          <h1><Strong>Pizza</Strong></h1>
+        </div>
+        <div class="column is-one-third">
+          <h1><Strong>Ingredients</Strong></h1>
+        </div>
+        <div class="column">
+          <h1><Strong>Price(USD)</Strong></h1>
+        </div>
+        <div class="column is-1">
+      
+        </div>
+        <div class="column">
+          <h1><Strong>Quantity</Strong></h1>
+        </div>
+        <div class="column">
+          <h1><Strong>Amount(USD)</Strong></h1>
+        </div>
+      </div>
+      <div class="columns is-gapless" *ngFor="let item of opizzas">
+        <div class="column col">
+          <h1><Strong>{{item.name}}</Strong></h1>
+        </div>
+        <div class="column is-one-third">
+          <h1>{{item.ingredients}}</h1>
+        </div>
+        <div class="column">
+          <h1><Strong>{{item.price}}</Strong></h1>
+        </div>
+        <div class="column is-1">
+            <h1><strong>X {{amt[findIndex(item.name)]}}</strong></h1>
+        </div>
+        
+        <div class="column">
+          <h1><strong>{{tprice[findIndex(item.name)]}}</strong></h1>
+        </div>
+      </div>
+      <footer>
+        <nav class="navbar is-light">
+          <div class="navbar-end">
+              <h3>The total price is: {{fprice}}</h3>
+            <button class="button is-success" (click) = "reset()">Place Order</button>
+          </div>
+        </nav>
+      </footer>
+</section>
